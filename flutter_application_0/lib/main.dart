@@ -31,6 +31,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> data = [];
+    data.add(Text("Hi Bro"));
+    data.add(Text("Hi Bro"));
+    data.add(Text(
+      number.toString(),
+      style: TextStyle(fontSize: 60),
+    ));
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Hello Flutter"),
@@ -38,24 +46,31 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Hi Bro"),
-            Text("Hi Bro"),
-            Text(
-              number.toString(),
-              style: TextStyle(fontSize: 60),
-            ),
-          ],
+          children: getData(20),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            number++;
-          });
-        },
+        onPressed: addNumber,
         child: Icon(Icons.add),
       ),
     );
+  }
+
+  void addNumber() {
+    setState(() {
+      number++;
+    });
+  }
+
+  List<Widget> getData(int count) {
+    List<Widget> data = [];
+    for (var i = 0; i < count; i++) {
+      data.add(Text(
+        "Task ${i + 1}",
+        style: TextStyle(fontSize: 20),
+      ));
+    }
+
+    return data;
   }
 }
